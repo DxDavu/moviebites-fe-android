@@ -1,11 +1,12 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs } from 'expo-router';
-import React from 'react';
+import { Link, Tabs, useRouter } from 'expo-router';
+import React, { useEffect, useState } from 'react';
 import { Pressable } from 'react-native';
 
 import { useClientOnlyValue } from '@/components/useClientOnlyValue';
 import { useColorScheme } from '@/components/useColorScheme';
 import Colors from '@/constants/Colors';
+import { useUserStore } from '@/stores/useUserStore';
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -17,6 +18,30 @@ function TabBarIcon(props: {
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const router = useRouter();
+  const socialId = useUserStore((s) => s.socialId);
+  const loadFromStorage = useUserStore((s) => s.loadFromStorage);
+  const [checkingAuth, setCheckingAuth] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      setCheckingAuth(true);
+      await loadFromStorage();
+      setCheckingAuth(false);
+    })();
+  }, [loadFromStorage]);
+
+  useEffect(() => {
+    if (!checkingAuth && !socialId) {
+      // Not logged in - send to auth
+      router.replace('/login');
+    }
+  }, [checkingAuth, socialId]);
+
+  if (checkingAuth) {
+    // Avoid rendering tabs until auth check completes
+    return null;
+  }
 
   return (
     <Tabs
@@ -29,8 +54,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Home',
+          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
               <Pressable>
@@ -47,7 +72,31 @@ export default function TabLayout() {
           ),
         }}
       />
-      
+
+      <Tabs.Screen
+        name="explore"
+        options={{
+          title: 'Explore',
+          tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
+        }}
+      />
+
+      <Tabs.Screen
+        name="favorites"
+        options={{
+          title: 'Favorites',
+          tabBarIcon: ({ color }) => <TabBarIcon name="heart" color={color} />,
+        }}
+      />
+
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+          tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
+        }}
+      />
+
     </Tabs>
   );
 }
