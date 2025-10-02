@@ -1,0 +1,983 @@
+{
+  "info": {
+    "name": "MovieBites V3 API",
+    "description": "Complete API collection for MovieBites V3 - Categories and WebSeries endpoints",
+    "version": "1.0.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://moviebites-api.rishi-300.workers.dev",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "Get All Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["categories"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "q",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categories?q=action&page=1&limit=5",
+              "host": ["{{baseUrl}}"],
+              "path": ["categories"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "action"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Category by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categories/{{categoryId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["categories", "{{categoryId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Category",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Action\",\n  \"description\": \"High-energy movies and shows with intense sequences\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["categories"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Category",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Action & Adventure\",\n  \"description\": \"High-energy movies and shows with intense action sequences and adventures\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/categories/{{categoryId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["categories", "{{categoryId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Category",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categories/{{categoryId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["categories", "{{categoryId}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "WebSeries",
+      "item": [
+        {
+          "name": "Get All WebSeries",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/webseries?page=1&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["webseries"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "q",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "category",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "type",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "published",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "tags",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search WebSeries with Filters",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/webseries?q=marvel&category=action&type=Movie&published=true&tags=trending,top-picks&page=1&limit=5",
+              "host": ["{{baseUrl}}"],
+              "path": ["webseries"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "marvel"
+                },
+                {
+                  "key": "category",
+                  "value": "action"
+                },
+                {
+                  "key": "type",
+                  "value": "Movie"
+                },
+                {
+                  "key": "published",
+                  "value": "true"
+                },
+                {
+                  "key": "tags",
+                  "value": "trending,top-picks"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search WebSeries (Typeahead)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/webseries/search?q=avengers&limit=5",
+              "host": ["{{baseUrl}}"],
+              "path": ["webseries", "search"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "avengers"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get WebSeries by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/webseries/{{webseriesId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["webseries", "{{webseriesId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get WebSeries by Slug",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/webseries/avengers-endgame",
+              "host": ["{{baseUrl}}"],
+              "path": ["webseries", "avengers-endgame"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Movie",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"Movie\",\n  \"name\": \"Avengers: Endgame\",\n  \"slug\": \"avengers-endgame\",\n  \"categories\": [\"{{categoryId}}\"],\n  \"coverImage\": {\n    \"url\": \"https://example.com/avengers-endgame-poster.jpg\",\n    \"fileId\": \"poster_123\",\n    \"width\": 1080,\n    \"height\": 1920\n  },\n  \"trailerLink\": \"https://youtube.com/watch?v=trailer123\",\n  \"shortDescription\": \"The epic conclusion to the Infinity Saga\",\n  \"description\": \"After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.\",\n  \"m3u8MasterPlaylist\": \"https://cdn.example.com/avengers-endgame/master.m3u8\",\n  \"episodes\": [\n    {\n      \"episodeNumber\": 1,\n      \"title\": \"Full Movie\",\n      \"url\": \"https://cdn.example.com/avengers-endgame/episode1.m3u8\",\n      \"duration\": 10800,\n      \"isPaid\": false\n    }\n  ],\n  \"isPublished\": true,\n  \"durationSeconds\": 10800,\n  \"tags\": [\"trending\", \"top-picks\", \"most-recommended\"],\n  \"createdBy\": \"admin\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/webseries",
+              "host": ["{{baseUrl}}"],
+              "path": ["webseries"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create TV Show",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"Show\",\n  \"name\": \"Stranger Things\",\n  \"categories\": [\"{{categoryId}}\"],\n  \"coverImage\": {\n    \"url\": \"https://example.com/stranger-things-poster.jpg\",\n    \"width\": 1080,\n    \"height\": 1920\n  },\n  \"trailerLink\": \"https://youtube.com/watch?v=trailer456\",\n  \"shortDescription\": \"Supernatural mysteries in a small town\",\n  \"description\": \"When a young boy disappears, his mother, a police chief and his friends must confront terrifying supernatural forces in order to get him back.\",\n  \"episodes\": [\n    {\n      \"episodeNumber\": 1,\n      \"title\": \"The Vanishing of Will Byers\",\n      \"url\": \"https://cdn.example.com/stranger-things/s1e1.m3u8\",\n      \"duration\": 2880,\n      \"isPaid\": false\n    },\n    {\n      \"episodeNumber\": 2,\n      \"title\": \"The Weirdo on Maple Street\",\n      \"url\": \"https://cdn.example.com/stranger-things/s1e2.m3u8\",\n      \"duration\": 3240,\n      \"isPaid\": false\n    }\n  ],\n  \"isPublished\": true,\n  \"durationSeconds\": 6120,\n  \"tags\": [\"trending\", \"new-releases\"],\n  \"createdBy\": \"content-manager\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/webseries",
+              "host": ["{{baseUrl}}"],
+              "path": ["webseries"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Short Film",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"Short\",\n  \"name\": \"The Last Stand\",\n  \"categories\": [\"{{categoryId}}\"],\n  \"coverImage\": {\n    \"url\": \"https://example.com/last-stand-poster.jpg\"\n  },\n  \"shortDescription\": \"A gripping 15-minute thriller\",\n  \"description\": \"In a post-apocalyptic world, a lone survivor makes their final stand against overwhelming odds.\",\n  \"episodes\": [\n    {\n      \"episodeNumber\": 1,\n      \"title\": \"The Last Stand\",\n      \"url\": \"https://cdn.example.com/last-stand/film.m3u8\",\n      \"duration\": 900,\n      \"isPaid\": false\n    }\n  ],\n  \"isPublished\": false,\n  \"durationSeconds\": 900,\n  \"tags\": [\"spring-into-saturday\"],\n  \"createdBy\": \"indie-creator\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/webseries",
+              "host": ["{{baseUrl}}"],
+              "path": ["webseries"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update WebSeries",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Avengers: Endgame - Director's Cut\",\n  \"description\": \"After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe. This director's cut includes additional scenes.\",\n  \"isPublished\": true,\n  \"tags\": [\"trending\", \"top-picks\", \"most-recommended\", \"display-on-banner\"],\n  \"durationSeconds\": 11400\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/webseries/{{webseriesId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["webseries", "{{webseriesId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete WebSeries",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/webseries/{{webseriesId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["webseries", "{{webseriesId}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Pages",
+      "item": [
+        {
+          "name": "List Published Pages",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pages?page=1&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["pages"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "q",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search Pages (Include Drafts)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pages?q=terms&isPublished=false&page=1&limit=5",
+              "host": ["{{baseUrl}}"],
+              "path": ["pages"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "terms"
+                },
+                {
+                  "key": "isPublished",
+                  "value": "false"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Page (Public)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pages/privacy-policy",
+              "host": ["{{baseUrl}}"],
+              "path": ["pages", "privacy-policy"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Page (Admin Preview)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pages/terms-of-service?admin=true",
+              "host": ["{{baseUrl}}"],
+              "path": ["pages", "terms-of-service"],
+              "query": [
+                {
+                  "key": "admin",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create or Update Page",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"slug\": \"privacy-policy\",\n  \"title\": \"Privacy Policy\",\n  \"content\": \"<h1>Privacy Policy</h1><p>Last updated ...</p>\",\n  \"isPublished\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/pages",
+              "host": ["{{baseUrl}}"],
+              "path": ["pages"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Page by Slug",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"slug\": \"terms-of-service\",\n  \"title\": \"Terms of Service\",\n  \"content\": \"<h1>Terms of Service</h1><p>Updated content...</p>\",\n  \"isPublished\": false\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/pages/privacy-policy",
+              "host": ["{{baseUrl}}"],
+              "path": ["pages", "privacy-policy"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Page",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pages/privacy-policy",
+              "host": ["{{baseUrl}}"],
+              "path": ["pages", "privacy-policy"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "List Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users?page=1&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["users"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "20" },
+                { "key": "q", "value": "", "disabled": true },
+                { "key": "role", "value": "", "disabled": true },
+                { "key": "userType", "value": "", "disabled": true }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "{{userId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Updated\",\n  \"role\": \"admin\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "{{userId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "{{userId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "User Stats Summary",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/stats/summary",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "stats", "summary"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Mobile Upsert User",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"social_id\": \"apple-123\",\n  \"email\": \"viewer@example.com\",\n  \"name\": \"Viewer\",\n  \"image_url\": \"https://example.com/avatar.png\",\n  \"user_type\": \"mobile\",\n  \"udid\": \"device-xyz\",\n  \"token\": \"legacy-token\",\n  \"addedBonus\": 100\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/mobile/upsert",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "mobile", "upsert"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "User Favorites",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/favorites?social_id={{socialId}}&includeEpisodes=false",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "favorites"],
+              "query": [
+                { "key": "social_id", "value": "{{socialId}}" },
+                { "key": "includeEpisodes", "value": "false" },
+                { "key": "episode_id", "value": "", "disabled": true },
+                { "key": "episode_number", "value": "", "disabled": true }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "User Favorites (with Episodes)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/favorites?social_id={{socialId}}&includeEpisodes=true",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "favorites"],
+              "query": [
+                { "key": "social_id", "value": "{{socialId}}" },
+                { "key": "includeEpisodes", "value": "true" },
+                { "key": "episode_id", "value": "", "disabled": true },
+                { "key": "episode_number", "value": "", "disabled": true }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "User Likes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/likes?social_id={{socialId}}&includeEpisodes=false",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "likes"],
+              "query": [
+                { "key": "social_id", "value": "{{socialId}}" },
+                { "key": "includeEpisodes", "value": "false" },
+                { "key": "episode_id", "value": "", "disabled": true },
+                { "key": "episode_number", "value": "", "disabled": true }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "User Likes (with Episodes)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/likes?social_id={{socialId}}&includeEpisodes=true",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "likes"],
+              "query": [
+                { "key": "social_id", "value": "{{socialId}}" },
+                { "key": "includeEpisodes", "value": "true" },
+                { "key": "episode_id", "value": "", "disabled": true },
+                { "key": "episode_number", "value": "", "disabled": true }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Content Likes",
+      "item": [
+        {
+          "name": "Check Like",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "X-API-KEY", "value": "{{mobileApiKey}}", "disabled": true }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/likes/{{webseriesId}}/like?social_id={{socialId}}&episode_number=1",
+              "host": ["{{baseUrl}}"],
+              "path": ["content", "likes", "{{webseriesId}}", "like"],
+              "query": [
+                { "key": "social_id", "value": "{{socialId}}" },
+                { "key": "episode_number", "value": "1" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Like WebSeries",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-KEY", "value": "{{mobileApiKey}}", "disabled": true }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"social_id\": \"{{socialId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/likes/{{webseriesId}}/like",
+              "host": ["{{baseUrl}}"],
+              "path": ["content", "likes", "{{webseriesId}}", "like"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Like Episode",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-KEY", "value": "{{mobileApiKey}}", "disabled": true }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"social_id\": \"{{socialId}}\",\n  \"episode_number\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/likes/{{webseriesId}}/like",
+              "host": ["{{baseUrl}}"],
+              "path": ["content", "likes", "{{webseriesId}}", "like"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove Like",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-KEY", "value": "{{mobileApiKey}}", "disabled": true }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"social_id\": \"{{socialId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/likes/{{webseriesId}}/like",
+              "host": ["{{baseUrl}}"],
+              "path": ["content", "likes", "{{webseriesId}}", "like"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Like Count",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "X-API-KEY", "value": "{{mobileApiKey}}", "disabled": true }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/likes/{{webseriesId}}/like/count",
+              "host": ["{{baseUrl}}"],
+              "path": ["content", "likes", "{{webseriesId}}", "like", "count"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Content Favorites",
+      "item": [
+        {
+          "name": "Check Favorite",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "X-API-KEY", "value": "{{mobileApiKey}}", "disabled": true }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/favorites/{{webseriesId}}/favorite?social_id={{socialId}}&episode_number=1",
+              "host": ["{{baseUrl}}"],
+              "path": ["favorites", "{{webseriesId}}", "favorite"],
+              "query": [
+                { "key": "social_id", "value": "{{socialId}}" },
+                { "key": "episode_number", "value": "1" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Favorite WebSeries",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-KEY", "value": "{{mobileApiKey}}", "disabled": true }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"social_id\": \"{{socialId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/favorites/{{webseriesId}}/favorite",
+              "host": ["{{baseUrl}}"],
+              "path": ["favorites", "{{webseriesId}}", "favorite"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Favorite Episode",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-KEY", "value": "{{mobileApiKey}}", "disabled": true }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"social_id\": \"{{socialId}}\",\n  \"episode_number\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/favorites/{{webseriesId}}/favorite",
+              "host": ["{{baseUrl}}"],
+              "path": ["favorites", "{{webseriesId}}", "favorite"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove Favorite",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-KEY", "value": "{{mobileApiKey}}", "disabled": true }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"social_id\": \"{{socialId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/favorites/{{webseriesId}}/favorite",
+              "host": ["{{baseUrl}}"],
+              "path": ["favorites", "{{webseriesId}}", "favorite"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Favorite Count",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "X-API-KEY", "value": "{{mobileApiKey}}", "disabled": true }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/favorites/{{webseriesId}}/favorite/count",
+              "host": ["{{baseUrl}}"],
+              "path": ["favorites", "{{webseriesId}}", "favorite", "count"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/",
+          "host": ["{{baseUrl}}"],
+          "path": [""]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Auto-generate IDs for testing",
+          "if (!pm.collectionVariables.get('categoryId')) {",
+          "    pm.collectionVariables.set('categoryId', 'cat_' + Math.random().toString(36).substr(2, 9));",
+          "}",
+          "if (!pm.collectionVariables.get('webseriesId')) {",
+          "    pm.collectionVariables.set('webseriesId', 'ws_' + Math.random().toString(36).substr(2, 9));",
+          "}"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Basic response validation",
+          "pm.test('Response status code is successful', function () {",
+          "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+          "});",
+          "",
+          "pm.test('Response has JSON body', function () {",
+          "    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+          "});",
+          "",
+          "// Extract IDs from create responses",
+          "if (pm.response.code === 201) {",
+          "    const responseJson = pm.response.json();",
+          "    if (responseJson.data && responseJson.data.id) {",
+          "        if (pm.info.requestName.includes('Category')) {",
+          "            pm.collectionVariables.set('categoryId', responseJson.data.id);",
+          "        } else if (pm.info.requestName.includes('WebSeries')) {",
+          "            pm.collectionVariables.set('webseriesId', responseJson.data.id);",
+          "        }",
+          "    }",
+          "}",
+          "",
+          "// Log response for debugging",
+          "console.log('Response:', pm.response.json());"
+        ]
+      }
+    }
+  ]
+}
